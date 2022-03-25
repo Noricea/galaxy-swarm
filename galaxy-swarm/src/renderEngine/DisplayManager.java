@@ -21,6 +21,7 @@ public class DisplayManager {
 		
 		try {
 			Display.setDisplayMode(new DisplayMode(WIDTH, HEIGHT));
+			Display.setTitle("Simulaxy");
 			Display.create(new PixelFormat(), attribs);
 		} catch (LWJGLException e) {
 			// TODO Auto-generated catch block
@@ -32,6 +33,7 @@ public class DisplayManager {
 	
 	public static void updateDisplay() {
 		Display.sync(FPS_CAP);
+		Display.update();
 	}
 	
 	public static void closeDisplay() {
