@@ -32,7 +32,6 @@ public class MainGameLoop {
 			//Game Logic
 			renderer.prepare();
 			renderer.render(model);
-			
 			DisplayManager.updateDisplay();
 		}
 		
