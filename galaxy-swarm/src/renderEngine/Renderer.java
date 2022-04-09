@@ -13,13 +13,13 @@ import org.lwjgl.util.vector.Matrix4f;
 import shaders.StaticShader;
 import toolbox.Maths;
 
-import entities.Entity;
+import entities.Star;
 
 public class Renderer {
 	
 	private static final float FOV = 70;
 	private static final float NEAR_PLANE = 0.1f;
-	private static final float FAR_PLANE = 1000;
+	private static final float FAR_PLANE = 100000;
 	
 	private Matrix4f projectionMatrix;
 	
@@ -36,14 +36,14 @@ public class Renderer {
 		GL11.glClearColor(0.04f, 0, 0.2f, 1);
 	}
 
-	public void render(Entity entity, StaticShader shader) {
-		TexturedModel model = entity.getModel();
+	public void render(Star star, StaticShader shader) {
+		TexturedModel model = star.getObject().getModel();
 		RawModel rawModel = model.getRawModel();
 		GL30.glBindVertexArray(rawModel.getVaoID());
 		GL20.glEnableVertexAttribArray(0);
 		GL20.glEnableVertexAttribArray(1);
-		Matrix4f transformationMatrix = Maths.createTransformationMatrix(entity.getPosition(),
-				entity.getRotX(), entity.getRotY(), entity.getRotZ(), entity.getScale());
+		Matrix4f transformationMatrix = Maths.createTransformationMatrix(star.getPosition(),
+				star.getRotation().x, star.getRotation().y, star.getRotation().z, star.getRadius());
 		shader.loadTransformationMatrix(transformationMatrix);
 		GL13.glActiveTexture(GL13.GL_TEXTURE0);
 		GL11.glBindTexture(GL11.GL_TEXTURE_2D, model.getTexture().getID());

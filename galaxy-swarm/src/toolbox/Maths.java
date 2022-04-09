@@ -3,6 +3,7 @@ package toolbox;
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;
 import entities.Camera;
+import entities.Star;
 
 public class Maths {
 
@@ -28,5 +29,32 @@ public class Maths {
 		Vector3f negativeCameraPos = new Vector3f(-cameraPos.x,-cameraPos.y,-cameraPos.z);
 		Matrix4f.translate(negativeCameraPos, viewMatrix, viewMatrix);
 		return viewMatrix;
+	}
+	
+	public static Vector3f calculateVelocity(Star actor, Star attractor){
+		float r = (float) Math.pow(
+				Math.pow(actor.getPosition().x - attractor.getPosition().x, 2)	+ 
+				Math.pow(actor.getPosition().y - attractor.getPosition().y, 2)	+ 
+				Math.pow(actor.getPosition().z - attractor.getPosition().z, 2), 0.5d);
+		float R = actor.getRadius() + attractor.getRadius();
+		float M = actor.getMass() * attractor.getMass();
+		float g = gravity(r, R, M);
+
+		actor.setVelocity(new Vector3f(
+				actor.getVelocity().x - ((actor.getPosition().x - attractor.getPosition().x) * g / r)*(attractor.getMass()/(actor.getMass()+attractor.getMass())),
+				actor.getVelocity().y - ((actor.getPosition().y - attractor.getPosition().y) * g / r)*(attractor.getMass()/(actor.getMass()+attractor.getMass())),
+				actor.getVelocity().z - ((actor.getPosition().z - attractor.getPosition().z) * g / r)*(attractor.getMass()/(actor.getMass()+attractor.getMass()))));
+		return actor.getVelocity();
+	}
+	
+	private static float gravity(float r, float R, float M) {
+		final float G = 0.0066743015f;
+
+		if (r < R) {
+			return 0;
+		} else {
+			float g = (G * M) / (r * r);
+			return g;
+		}
 	}
 }
