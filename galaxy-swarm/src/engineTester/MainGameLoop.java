@@ -34,36 +34,84 @@ public class MainGameLoop {
 		TexturedModel staticModel = new TexturedModel(model, new ModelTexture(loader.loadTexture("image")));
 		Camera camera = new Camera();
 
-		Entity solentity = new Entity(staticModel, new Vector3f(0, 0, 0), 0, 0, 0, 1);
-		Star sol = new Star(solentity, 
-				new Vector3f(20, 0, 0), 
+		Entity solentity = new Entity(staticModel);
+
+		List<Star> galaxy = new ArrayList<Star>();	
+		
+		//Sun
+		galaxy.add(new Star(solentity, 
+				new Vector3f(0, 0, 0), 
 				new Vector3f(0, 0, 0), 
 				new Vector3f(0, 0, 0),
-				2, 1.4f);
-		Star smbh = new Star(solentity, 
-				new Vector3f(120, 0, 0), 
+				2, 1));
+		
+		//Mercury
+		galaxy.add(new Star(solentity, 
+				new Vector3f(1f, 0f, 0f), 
 				new Vector3f(0, 0, 0), 
-				new Vector3f(0, -0.3f, 0), 
-				120, 8f);
-
-		List<Star> galaxy = new ArrayList<Star>();
+				new Vector3f(0, 0, 0),
+				2, 1));
 		
-		//galaxy.add(sol);
-		//galaxy.add(smbh);
-
+		//Venus
+		galaxy.add(new Star(solentity, 
+				new Vector3f(2f, 0f, 0f), 
+				new Vector3f(0, 0, 0), 
+				new Vector3f(0, 0, 0),
+				2, 1));
 		
-		for (int i = 0; i < 1000; i++) {
-			float spawnX = (float) Math.random()*1000-500;
-			float spawnY = (float) Math.random()*1000-500;
-			float spawnZ = (float) Math.random()*1000-500;
-			
-			Star star = new Star(solentity, 
-					new Vector3f(spawnX, spawnY, spawnZ), 
-					new Vector3f(0, 0, 0), 
-					new Vector3f((float) Math.random()-0.5f, (float) Math.random()-0.5f, (float) Math.random()-0.5f), 
-					2, 1);
-			galaxy.add(star);
-		}
+		//Earth
+		galaxy.add(new Star(solentity, 
+				new Vector3f(2f, 0f, 0f), 
+				new Vector3f(0, 0, 0), 
+				new Vector3f(0, 0, 0),
+				2, 1));
+		
+		//Mars
+		galaxy.add(new Star(solentity, 
+				new Vector3f(2f, 0f, 0f), 
+				new Vector3f(0, 0, 0), 
+				new Vector3f(0, 0, 0),
+				2, 1));
+		
+		//Jupiter
+		galaxy.add(new Star(solentity, 
+				new Vector3f(2f, 0f, 0f), 
+				new Vector3f(0, 0, 0), 
+				new Vector3f(0, 0, 0),
+				2, 1));
+		
+		//Saturn
+		galaxy.add(new Star(solentity, 
+				new Vector3f(2f, 0f, 0f), 
+				new Vector3f(0, 0, 0), 
+				new Vector3f(0, 0, 0),
+				2, 1));
+		
+		//Uranus
+		galaxy.add(new Star(solentity, 
+				new Vector3f(2f, 0f, 0f), 
+				new Vector3f(0, 0, 0), 
+				new Vector3f(0, 0, 0),
+				2, 1));
+		
+		//Neptune
+		galaxy.add(new Star(solentity, 
+				new Vector3f(2f, 0f, 0f), 
+				new Vector3f(0, 0, 0), 
+				new Vector3f(0, 0, 0),
+				2, 1));
+		
+//		for (int i = 0; i < 1000; i++) {
+//			float spawnX = (float) Math.random()*1000-500;
+//			float spawnY = (float) Math.random()*1000-500;
+//			float spawnZ = (float) Math.random()*1000-500;
+//			
+//			galaxy.add(new Star(solentity, 
+//					new Vector3f(spawnX, spawnY, spawnZ), 
+//					new Vector3f(0, 0, 0), 
+//					new Vector3f((float) Math.random()-0.5f, (float) Math.random()-0.5f, (float) Math.random()-0.5f), 
+//					2, 1));
+//		}
 
 		while (!Display.isCloseRequested()) {
 			camera.move();

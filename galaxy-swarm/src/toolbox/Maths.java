@@ -40,10 +40,12 @@ public class Maths {
 		float M = actor.getMass() * attractor.getMass();
 		float g = gravity(r, R, M);
 
-		actor.setVelocity(new Vector3f(
-				actor.getVelocity().x - ((actor.getPosition().x - attractor.getPosition().x) * g / r)*(attractor.getMass()/(actor.getMass()+attractor.getMass())),
-				actor.getVelocity().y - ((actor.getPosition().y - attractor.getPosition().y) * g / r)*(attractor.getMass()/(actor.getMass()+attractor.getMass())),
-				actor.getVelocity().z - ((actor.getPosition().z - attractor.getPosition().z) * g / r)*(attractor.getMass()/(actor.getMass()+attractor.getMass()))));
+		if(r != 0) {
+			actor.setVelocity(new Vector3f(
+					actor.getVelocity().x - ((actor.getPosition().x - attractor.getPosition().x) * g / r)*(attractor.getMass()/(actor.getMass()+attractor.getMass())),
+					actor.getVelocity().y - ((actor.getPosition().y - attractor.getPosition().y) * g / r)*(attractor.getMass()/(actor.getMass()+attractor.getMass())),
+					actor.getVelocity().z - ((actor.getPosition().z - attractor.getPosition().z) * g / r)*(attractor.getMass()/(actor.getMass()+attractor.getMass()))));
+		}
 		return actor.getVelocity();
 	}
 	
