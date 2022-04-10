@@ -38,80 +38,78 @@ public class MainGameLoop {
 
 		List<Star> galaxy = new ArrayList<Star>();	
 		
+		/*
+		 * //Distance 100 = 1AU
+		 * Planet Radius 1 = 10.000km = 0,000067AU -> roughly 200th the distance
+		 * Masse 1 = 1x10^24kg
+		 */
+		
+		float e23 = 0.1f;
+		float e24 = 1;
+		float e30 = 1000000;
+		
 		//Sun
 		galaxy.add(new Star(solentity, 
 				new Vector3f(0, 0, 0), 
 				new Vector3f(0, 0, 0), 
 				new Vector3f(0, 0, 0),
-				2, 1));
+				1.9885f*e30, 6.96f));
 		
 		//Mercury
 		galaxy.add(new Star(solentity, 
-				new Vector3f(1f, 0f, 0f), 
+				new Vector3f(-46.0012f, 0, 0),  
 				new Vector3f(0, 0, 0), 
-				new Vector3f(0, 0, 0),
-				2, 1));
+				new Vector3f(0, -0.005898f, 0),
+				3.3011f*e23, 0.244f));
 		
 		//Venus
 		galaxy.add(new Star(solentity, 
-				new Vector3f(2f, 0f, 0f), 
+				new Vector3f(0, 0, 0), 
 				new Vector3f(0, 0, 0), 
 				new Vector3f(0, 0, 0),
-				2, 1));
+				0, 1));
 		
 		//Earth
 		galaxy.add(new Star(solentity, 
-				new Vector3f(2f, 0f, 0f), 
+				new Vector3f(147.095f, 0, 0),  
 				new Vector3f(0, 0, 0), 
-				new Vector3f(0, 0, 0),
-				2, 1));
+				new Vector3f(0, 0.002978f, 0),
+				5.97237f*e24, 0.64f));
 		
 		//Mars
 		galaxy.add(new Star(solentity, 
-				new Vector3f(2f, 0f, 0f), 
+				new Vector3f(0, 0, 0), 
 				new Vector3f(0, 0, 0), 
 				new Vector3f(0, 0, 0),
-				2, 1));
+				0, 1));
 		
 		//Jupiter
 		galaxy.add(new Star(solentity, 
-				new Vector3f(2f, 0f, 0f), 
+				new Vector3f(0, 0, 0), 
 				new Vector3f(0, 0, 0), 
 				new Vector3f(0, 0, 0),
-				2, 1));
+				0, 1));
 		
 		//Saturn
 		galaxy.add(new Star(solentity, 
-				new Vector3f(2f, 0f, 0f), 
+				new Vector3f(0, 0, 0), 
 				new Vector3f(0, 0, 0), 
 				new Vector3f(0, 0, 0),
-				2, 1));
+				0, 1));
 		
 		//Uranus
 		galaxy.add(new Star(solentity, 
-				new Vector3f(2f, 0f, 0f), 
+				new Vector3f(0, 0, 0), 
 				new Vector3f(0, 0, 0), 
 				new Vector3f(0, 0, 0),
-				2, 1));
+				0, 1));
 		
 		//Neptune
 		galaxy.add(new Star(solentity, 
-				new Vector3f(2f, 0f, 0f), 
+				new Vector3f(0, 0, 0),  
 				new Vector3f(0, 0, 0), 
 				new Vector3f(0, 0, 0),
-				2, 1));
-		
-//		for (int i = 0; i < 1000; i++) {
-//			float spawnX = (float) Math.random()*1000-500;
-//			float spawnY = (float) Math.random()*1000-500;
-//			float spawnZ = (float) Math.random()*1000-500;
-//			
-//			galaxy.add(new Star(solentity, 
-//					new Vector3f(spawnX, spawnY, spawnZ), 
-//					new Vector3f(0, 0, 0), 
-//					new Vector3f((float) Math.random()-0.5f, (float) Math.random()-0.5f, (float) Math.random()-0.5f), 
-//					2, 1));
-//		}
+				0, 1));
 
 		while (!Display.isCloseRequested()) {
 			camera.move();
@@ -133,6 +131,8 @@ public class MainGameLoop {
 						galaxy.get(i).getPosition().y + galaxy.get(i).getVelocity().y, 
 						galaxy.get(i).getPosition().z + galaxy.get(i).getVelocity().z));
 			};
+			
+			System.out.format("x = %12f  y = %12f  z = %12f\n", galaxy.get(1).getPosition().x,galaxy.get(1).getPosition().y,galaxy.get(1).getPosition().z);
 			
 			for(int i = 0; i < galaxy.size(); i++) {
 				renderer.render(galaxy.get(i), shader);

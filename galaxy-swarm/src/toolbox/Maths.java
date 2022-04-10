@@ -39,24 +39,46 @@ public class Maths {
 		float R = actor.getRadius() + attractor.getRadius();
 		float M = actor.getMass() * attractor.getMass();
 		float g = gravity(r, R, M);
+		float Fz = centrifugalForce(r, g);
+		
+		float p = attractor.getMass()/(actor.getMass()+attractor.getMass());
 
 		if(r != 0) {
+//			actor.setVelocity(new Vector3f(
+//					actor.getVelocity().x - ((actor.getPosition().x - attractor.getPosition().x) * g / r)*(attractor.getMass()/(actor.getMass()+attractor.getMass())),
+//					actor.getVelocity().y - ((actor.getPosition().y - attractor.getPosition().y) * g / r)*(attractor.getMass()/(actor.getMass()+attractor.getMass())),
+//					actor.getVelocity().z - ((actor.getPosition().z - attractor.getPosition().z) * g / r)*(attractor.getMass()/(actor.getMass()+attractor.getMass()))));
+			
 			actor.setVelocity(new Vector3f(
-					actor.getVelocity().x - ((actor.getPosition().x - attractor.getPosition().x) * g / r)*(attractor.getMass()/(actor.getMass()+attractor.getMass())),
-					actor.getVelocity().y - ((actor.getPosition().y - attractor.getPosition().y) * g / r)*(attractor.getMass()/(actor.getMass()+attractor.getMass())),
-					actor.getVelocity().z - ((actor.getPosition().z - attractor.getPosition().z) * g / r)*(attractor.getMass()/(actor.getMass()+attractor.getMass()))));
+			actor.getVelocity().x - (((actor.getPosition().x - attractor.getPosition().x) * g / r)) * p,
+			actor.getVelocity().y - (((actor.getPosition().y - attractor.getPosition().y) * g / r)) * p,
+			actor.getVelocity().z - (((actor.getPosition().z - attractor.getPosition().z) * g / r)) * p));
 		}
 		return actor.getVelocity();
 	}
 	
 	private static float gravity(float r, float R, float M) {
-		final float G = 0.0066743015f;
+		final float G = 6.6743015f;
 
 		if (r < R) {
 			return 0;
 		} else {
-			float g = (G * M) / (r * r);
+			float g = (float) ((G * Math.pow(10, -11) * M) / Math.pow(r, 2));
 			return g;
 		}
+	}
+	
+	private static float centrifugalForce(float R, float g) {
+		float v;
+		if (R < 0) {
+			R *= -1;
+			v = (float) Math.pow(R*g, 0.5);
+			v *= -1;
+		}
+		else {
+			v = (float) Math.pow(R*g, 0.5);
+		}
+		
+		return v;
 	}
 }
