@@ -35,7 +35,7 @@ public class Loader {
 		Texture texture = null;
 		try {
 			texture = TextureLoader.getTexture("PNG",
-					new FileInputStream("res/" + fileName + ".png"));
+					new FileInputStream("galaxy-swarm/res/" + fileName + ".png"));
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println("Tried to load texture " + fileName + ".png , didn't work");

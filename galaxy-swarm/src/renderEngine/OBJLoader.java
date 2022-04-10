@@ -18,7 +18,7 @@ public class OBJLoader {
 
 		FileReader fr = null;
 		try {
-			fr = new FileReader(new File("res/" + fileName + ".obj"));
+			fr = new FileReader(new File("galaxy-swarm/res/" + fileName + ".obj"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
