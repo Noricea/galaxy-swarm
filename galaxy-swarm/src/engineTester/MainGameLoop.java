@@ -24,6 +24,8 @@ public class MainGameLoop {
 	
 	public static void main(String[] args) {
 
+		System.out.print(System.getProperty("os.name"));
+		
 		DisplayManager.createDisplay();
 		Loader loader = new Loader();
 		StaticShader shader = new StaticShader();

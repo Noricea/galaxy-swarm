@@ -18,7 +18,12 @@ public class OBJLoader {
 
 		FileReader fr = null;
 		try {
-			fr = new FileReader(new File("galaxy-swarm/res/" + fileName + ".obj"));
+			if (System.getProperty("os.name").toLowerCase().contains("nix")
+					|| System.getProperty("os.name").toLowerCase().contains("nux")) {
+				fr = new FileReader(new File("res/" + fileName + ".obj"));
+			} else {
+				fr = new FileReader(new File("galaxy-swarm/res/" + fileName + ".obj"));
+			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
