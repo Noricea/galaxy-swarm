@@ -13,13 +13,15 @@ public class StaticShader extends ShaderProgram {
 	private int location_viewMatrix;
 
 	public StaticShader() {
-		super((System.getProperty("os.name").toLowerCase().contains("nix")
-				|| System.getProperty("os.name").toLowerCase().contains("nux") ? "src/shaders/vertexShader.txt"
-						: "galaxy-swarm/src/shaders/vertexShader.txt"),
-
+		super((
+				System.getProperty("os.name").toLowerCase().contains("nix")
+					|| System.getProperty("os.name").toLowerCase().contains("nux") 
+						? "src/shaders/vertexShader.txt"
+							: "galaxy-swarm/src/shaders/vertexShader.txt"),
 				(System.getProperty("os.name").toLowerCase().contains("nix")
-						|| System.getProperty("os.name").toLowerCase().contains("nux") ? "src/shaders/fragmentShader.txt"
-								: "galaxy-swarm/src/shaders/fragmentShader.txt"));
+					|| System.getProperty("os.name").toLowerCase().contains("nux")
+						? "src/shaders/fragmentShader.txt"
+							: "galaxy-swarm/src/shaders/fragmentShader.txt"));
 	}
 
 	@Override

@@ -7,15 +7,15 @@ public class Star {
 	private Entity object;
 	private Vector3f position;
 	private Vector3f rotation;
-	private Vector3f velocity;
+	private Vector3f movementVector;
 	private float mass;
 	private float radius;
 
-	public Star(Entity object, Vector3f position, Vector3f rotation, Vector3f velocity, float mass, float radius) {
+	public Star(Entity object, Vector3f position, Vector3f rotation, Vector3f movementVector, float mass, float radius) {
 		this.object = object;
 		this.position = position;
 		this.rotation = rotation;
-		this.velocity = velocity;
+		this.movementVector = movementVector;
 		this.mass = mass;
 		this.radius = radius;
 	}
@@ -24,6 +24,12 @@ public class Star {
 		this.position.x += dx;
 		this.position.y += dy;
 		this.position.z += dz;
+	}
+	
+	public void increasePosition(Vector3f dv) {
+		this.position.x += dv.x;
+		this.position.y += dv.y;
+		this.position.z += dv.z;
 	}
 
 	public Entity getObject() {
@@ -38,8 +44,8 @@ public class Star {
 		return rotation;
 	}
 
-	public Vector3f getVelocity() {
-		return velocity;
+	public Vector3f getMovementVector() {
+		return movementVector;
 	}
 
 	public float getMass() {
@@ -62,8 +68,8 @@ public class Star {
 		this.rotation = rotation;
 	}
 	
-	public void setVelocity(Vector3f velocity) {
-		this.velocity = velocity;
+	public void setMovementVector(Vector3f velocity) {
+		this.movementVector = velocity;
 	}
 
 	public void setMass(float mass) {
