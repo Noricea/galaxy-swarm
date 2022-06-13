@@ -31,6 +31,12 @@ public class Star {
 		this.position.y += dv.y;
 		this.position.z += dv.z;
 	}
+	
+	public void increaseRotation(Vector3f dv) {
+		this.rotation.x += dv.x;
+		this.rotation.y += dv.y;
+		this.rotation.z += dv.z;
+	}
 
 	public Entity getObject() {
 		return object;
