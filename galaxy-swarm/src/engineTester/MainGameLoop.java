@@ -51,7 +51,7 @@ public class MainGameLoop {
 		for (int i = 0; i < count; i++) {
 			galaxy.add(new Star(solentity,
 					new Vector3f((float) (Math.random() * 10000 - 5000), (float) (Math.random() * 10000 - 5000), 0),
-					new Vector3f(0, 200, 0), new Vector3f(0, 0, 0), (float) (Math.random() * 6 * e30), 10));
+					new Vector3f(0, 300, 0), new Vector3f(0, 0, 0), (float) (Math.random() * 6 * e30), 10));
 		}
 
 		// count their total mass and average position
