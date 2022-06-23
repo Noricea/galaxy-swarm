@@ -31,7 +31,7 @@ public class MainGameLoop {
 		StaticShader shader = new StaticShader();
 		Renderer renderer = new Renderer(shader);
 
-		RawModel model = OBJLoader.loadObjModel("NewRedSun2" + "", loader);
+		RawModel model = OBJLoader.loadObjModel("NewRedSun2", loader);
 
 		TexturedModel staticModel = new TexturedModel(model, new ModelTexture(loader.loadTexture("blueSun")));
 		Camera camera = new Camera();
